@@ -1,0 +1,27 @@
+\documentclass[12pt]{article}
+\usepackage{enumitem, extsizes, amsfonts, braket, amsmath, ragged2e, physics, amsthm }
+
+\parindent=0pt
+\renewcommand\qedsymbol{Q.E.D.}
+
+\title{Chapter 0 Exercises}
+\author{David Piper}
+
+\begin{document}
+  \maketitle
+
+  \begin{enumerate}[label=0.\arabic*]
+    \item
+      \begin{enumerate}[label=(\alph*)]
+        \item \begin{proof}
+                Given the functions $f\qty(n)=n^2$ and $g\qty(n)=2n^2+100\sqrt{n}$ we may
+                observe that $f=o\qty(g).$ This follows from the fact that $n^2 < 2n^2$
+                for all $n \in \mathbb{N}^+.$ To prove this we simply use the definition
+                of $f=o\qty(g)$ if for every $\epsilon > 0, f(n) \leq \epsilon \cdot g(n)$
+                for every sufficiently large $n.$ From the equation we can observe that $\epsilon=2$
+                and that this is true for all $n \geq 1.$ That is, $1^2 < 2 \cdot 1^2$ or
+                $1 < 2.$
+        \end{proof}
+      \end{enumerate}
+  \end{enumerate}
+\end{document}
