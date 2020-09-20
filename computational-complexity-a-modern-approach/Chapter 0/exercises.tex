@@ -1,6 +1,27 @@
 \documentclass[12pt]{article}
 \usepackage{enumitem, extsizes, amsfonts, braket, amsmath, ragged2e, physics, amsthm }
 
+% Thanks to Heiko Oberdiek for this solution to enumerations with odd numbers only
+% found here:
+% https://tex.stackexchange.com/questions/184198/skipping-every-even-numbered-item-in-the-enumerate-environment
+\makeatletter
+\newcommand*{\arabicodd}[1]{%
+  \expandafter\@arabicodd\csname c@#1\endcsname
+}
+\newcommand*{\arabiceven}[1]{%
+  \expandafter\@arabiceven\csname c@#1\endcsname
+}
+\newcommand*{\@arabicodd}[1]{%
+  \@arabic{\numexpr(#1)*2-1\relax}%
+}
+\newcommand*{\@arabiceven}[1]{%
+  \@arabic{\numexpr(#1)*2\relax}%
+}
+
+\AddEnumerateCounter\arabicodd\@arabicodd{0}
+\AddEnumerateCounter\arabiceven\@arabiceven{0}
+\makeatother
+
 \parindent=0pt
 \renewcommand\qedsymbol{Q.E.D.}
 
@@ -10,18 +31,22 @@
 \begin{document}
   \maketitle
 
-  \begin{enumerate}[label=0.\arabic*]
+  \begin{enumerate}[label=0.\arabicodd*]
     \item
       \begin{enumerate}[label=(\alph*)]
-        \item \begin{proof}
-                Given the functions $f\qty(n)=n^2$ and $g\qty(n)=2n^2+100\sqrt{n}$ we may
-                observe that $f=o\qty(g).$ This follows from the fact that $n^2 < 2n^2$
-                for all $n \in \mathbb{N}^+.$ To prove this we simply use the definition
-                of $f=o\qty(g)$ if for every $\epsilon > 0, f(n) \leq \epsilon \cdot g(n)$
-                for every sufficiently large $n.$ From the equation we can observe that $\epsilon=2$
-                and that this is true for all $n \geq 1.$ That is, $1^2 < 2 \cdot 1^2$ or
-                $1 < 2.$
-        \end{proof}
+        \item
+          \begin{proof}
+            Given the functions $f\qty(n)=n^2$ and $g\qty(n)=2n^2+100\sqrt{n}$ we may
+            observe that $f=o\qty(g).$ This follows from the fact that $n^2 < 2n^2$
+            for all $n \in \mathbb{N}^+.$ To prove this we simply use the definition
+            of $f=o\qty(g)$ if for every $\epsilon > 0, f(n) \leq \epsilon \cdot g(n)$
+            for every sufficiently large $n.$ From the equation we can observe that $\epsilon=2$
+            and that this is true for all $n \geq 1.$ That is, $1^2 < 2 \cdot 1^2$ or
+            $1 < 2.$
+          \end{proof}
+        \item
+          \begin{proof}
+          \end{proof}
       \end{enumerate}
   \end{enumerate}
 \end{document}
