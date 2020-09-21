@@ -78,5 +78,70 @@
         \item The sentence: ``What an impossible question!'' is not a valid
               statement as it is simply an exclamatory sentence.
       \end{enumerate}
+    \item
+      \begin{enumerate}[label=(\alph*)]
+        \item The statement: $\emptyset \in \emptyset$ is False as the empty
+              set, by definition has no elements and thus cannot contain the
+              empty set.
+        \item The statement: $\emptyset \in \set{\emptyset}$ is True, we can
+              simply observe that the definition of being an element of a set
+              means that that item is one of the members of the set. Reading
+              off the list of items in the set $\set{\emptyset}$ we can clearly
+              see that yes $\emptyset$ is in fact in the set.
+        \item The statement: $\set{1, 3} = \set{3, 1}$ is True, we can
+              use the definition of set equality to see this. Specifically,
+              sets are considered to be equal if they have the same members,
+              since both of these sets contain the elements: $1$ and $3$ and
+              no other explicit elements they are equal.
+        \item The statement: $\emptyset = \set{\emptyset}$ is False, one way
+              to think about this is to look at the cardinality of each of these
+              two sets. The first set namely $\emptyset$ is a set containing
+              $0$ elements, thus having a cardinality of $0$. The second set
+              namely $\set{\emptyset}$ is a set with a single element $\emptyset$
+              having a cardinality of $1$. So these two sets have different
+              elements and even different numbers of elements, so given the
+              definition of set quality which we have previously discussed;
+              namely the requirement that the sets have the same elements
+              these two sets cannot possibly be equal.
+        \item The statement: $\emptyset \subset \set{\emptyset}$ is True, we
+              can observe that the definition of a subset is that a set meeting
+              this criteria must have at least some of the elements of the
+              superset and none that the superset doesn't have. In this case
+              we have the $\emptyset$ or $\set{}$ which is a subset of \emph{every}
+              set by its definition.
+        \item The statement: $1 \subseteq \set{1}$ is False, we can use
+              the definition of subset to determine this. In order for something
+              to be a subset of a set, that thing itself must be a \emph{set}
+              in this case the statement is asking if the integer $1$ is a subset
+              of the set containing the integer $1$. This is a nonsensical question
+              as the integer $1$ is \emph{not} a set so it cannot, by definition,
+              be a subset of \emph{any} sets.
+      \end{enumerate}
+    \item
+        Given the open sentence $P\qty(x) : 3x - 2 > 4$ we can first observe
+        that $3x - 2 = 4$ when $x=2$, by some basic arithmetic namely $3x-2=4$
+        $\rightarrow$ $3x=6$ $\rightarrow$ $x=2.$ This fact will allow us to
+        determine the values of x for which this sentence is both true and false.
+      \begin{enumerate}[label=(\alph*)]
+        \item Given the open sentence $P\qty(x) : 3x - 2 > 4$ we can use
+              the fact that $3x-2=4$ when $x=2$ to establish the lower-bound
+              for the first value of $x$ that satisfies this inequality namely
+              $x=3.$ So the interval for values of $x$ which satisfy this inequality
+              is: $\left[3, \infty \right).$
+        \item Given the open sentence $P\qty(x) : 3x - 2 > 4$ we can use
+            the fact that $3x-2=4$ when $x=2$ to establish the upper-bound
+            for the last value of $x$ that does not satisfy this inequality
+            namely $x=2.$ So the interval for values of $x$ which do not satisfy
+            this inequality is: $\left(-\infty, 2\right].$
+      \end{enumerate}
+    \item We are given $P\qty(n): n$ and $n+2$ are primes and are told that this
+          is an open sentence over the domain $\mathbb{N}.$ Six positive integers
+          n that satisfy this open sentence in the domain are: $\set{3,5,11,17,29,41}.$
+    \item We are given $S = \set{3,5,7,9}$ and our task is to find some open sentence
+          $P\qty(n)$ over the domain $S$ such that $P\qty(n)$ is true for half
+          of the integers in $S$ and false for the other half. One such example
+          for $P\qty(n)$ is $P\qty(n) : x > 6.$ In this case exactly half of
+          the elements of $S$ satisfy this condition, namely $\set{7,9}$ and
+          the other half does not: $\set{3,5}.$
   \end{enumerate}
 \end{document}
