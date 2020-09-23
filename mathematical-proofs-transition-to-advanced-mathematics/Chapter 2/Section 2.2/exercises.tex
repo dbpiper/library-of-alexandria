@@ -1,0 +1,80 @@
+\documentclass[12pt]{article}
+\usepackage{
+  enumitem,
+  extsizes,
+  amsfonts,
+  braket,
+  amsmath,
+  ragged2e,
+  physics,
+  amsthm,
+  textcomp,
+  gensymb
+}
+
+% Thanks to Heiko Oberdiek for this solution to enumerations with odd numbers only
+% found here:
+% https://tex.stackexchange.com/questions/184198/skipping-every-even-numbered-item-in-the-enumerate-environment
+\makeatletter
+\newcommand*{\arabicodd}[1]{%
+  \expandafter\@arabicodd\csname c@#1\endcsname
+}
+\newcommand*{\arabiceven}[1]{%
+  \expandafter\@arabiceven\csname c@#1\endcsname
+}
+\newcommand*{\@arabicodd}[1]{%
+  \@arabic{\numexpr(#1)*2-1\relax}%
+}
+\newcommand*{\@arabiceven}[1]{%
+  \@arabic{\numexpr(#1)*2\relax}%
+}
+
+\AddEnumerateCounter\arabicodd\@arabicodd{0}
+\AddEnumerateCounter\arabiceven\@arabiceven{0}
+\makeatother
+% end arabic odd/even definition
+
+% Define a closed sqrt function to have a tail
+% this more clearly defines the scope of the root
+% Source: https://en.wikibooks.org/wiki/LaTeX/Mathematics#Roots
+% it renames \sqrt as \oldsqrt
+\let\oldsqrt\sqrt
+% it defines the new \sqrt in terms of the old one
+\def\sqrt{\mathpalette\DHLhksqrt}
+\def\DHLhksqrt#1#2{%
+\setbox0=\hbox{$#1\oldsqrt{#2\,}$}\dimen0=\ht0
+\advance\dimen0-0.2\ht0
+\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+{\box0\lower0.4pt\box2}}
+%
+
+
+\parindent=0pt
+\renewcommand\qedsymbol{Q.E.D.}
+
+\title{Section 2.2 Exercises}
+\author{David Piper}
+
+\begin{document}
+\maketitle
+
+% The start index is the 6th odd number, not the actual value
+\begin{enumerate}[label=2.\arabicodd*, start=6]
+  \item
+        \begin{enumerate}[label=(\alph*)]
+          \item $\sqrt{2}$ is an irrational number.
+          \item $0$ is not a positive integer.
+          \item $111$ is not a prime number.
+        \end{enumerate}
+  \item
+        \begin{enumerate}[label=(\alph*)]
+          \item The real number $r$ can be greater than $\sqrt{2}.$
+          \item The absolute value of the real number $a$ is greater
+                than or equal to $3.$
+          \item No more than one angle of the triangle is $45\degree.$
+          \item The area of the circle is less than $9\pi.$
+          \item All sides of the triangle have differing lengths.
+          \item The point $P$ in the plane lies inside of the circle $C.$
+        \end{enumerate}
+\end{enumerate}
+\end{document}

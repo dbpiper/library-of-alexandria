@@ -1,0 +1,87 @@
+\documentclass[12pt]{article}
+\usepackage{
+  enumitem,
+  extsizes,
+  amsfonts,
+  braket,
+  amsmath,
+  ragged2e,
+  physics,
+  amsthm,
+  textcomp,
+  gensymb,
+  booktabs
+}
+
+% Thanks to Heiko Oberdiek for this solution to enumerations with odd numbers only
+% found here:
+% https://tex.stackexchange.com/questions/184198/skipping-every-even-numbered-item-in-the-enumerate-environment
+\makeatletter
+\newcommand*{\arabicodd}[1]{%
+  \expandafter\@arabicodd\csname c@#1\endcsname
+}
+\newcommand*{\arabiceven}[1]{%
+  \expandafter\@arabiceven\csname c@#1\endcsname
+}
+\newcommand*{\@arabicodd}[1]{%
+  \@arabic{\numexpr(#1)*2-1\relax}%
+}
+\newcommand*{\@arabiceven}[1]{%
+  \@arabic{\numexpr(#1)*2\relax}%
+}
+
+\AddEnumerateCounter\arabicodd\@arabicodd{0}
+\AddEnumerateCounter\arabiceven\@arabiceven{0}
+\makeatother
+% end arabic odd/even definition
+
+% Define a closed sqrt function to have a tail
+% this more clearly defines the scope of the root
+% Source: https://en.wikibooks.org/wiki/LaTeX/Mathematics#Roots
+% it renames \sqrt as \oldsqrt
+\let\oldsqrt\sqrt
+% it defines the new \sqrt in terms of the old one
+\def\sqrt{\mathpalette\DHLhksqrt}
+\def\DHLhksqrt#1#2{%
+\setbox0=\hbox{$#1\oldsqrt{#2\,}$}\dimen0=\ht0
+\advance\dimen0-0.2\ht0
+\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+{\box0\lower0.4pt\box2}}
+%
+
+\parindent=0pt
+\renewcommand\qedsymbol{Q.E.D.}
+
+\title{Section 2.3 Exercises}
+\author{David Piper}
+
+\begin{document}
+\maketitle
+
+% The start index is the 6th odd number, not the actual value
+\begin{enumerate}[label=2.\arabicodd*, start=8]
+  \item
+        \begin{tabular}{@{}llll@{}}
+          \toprule
+          P & Q & ${\sim}$Q & P$\land$(${\sim}$Q) \\ \midrule
+          T & T & F       & F                            \\
+          T & F & T       & T                            \\
+          F & T & F       & F                            \\
+          F & F & T       & F                            \\ \bottomrule
+        \end{tabular}
+  \item Given the following statements $P:15$ is odd and
+        $Q: 21$ is prime. The following are ways of writing their
+        conjunctions and disjunctions in English along with the truth
+        values for each combination.
+        \begin{enumerate}[label=(\alph*)]
+          \item $P \lor Q:$ Either $15$ is odd or $21$ is prime and maybe
+                both. True.
+          \item $P \land Q:$ It is the case that $15$ is odd and $21$ is
+                prime. False.
+          \item $\qty({\sim}P) \lor Q:$ Either $15$ is even or $21$ is prime
+                and maybe both. False.
+          \item $P\land\qty({\sim}Q):$ It is the case that $15$ is odd and
+                that $21$ is not prime. True.
+        \end{enumerate}
+\end{enumerate}
+\end{document}
