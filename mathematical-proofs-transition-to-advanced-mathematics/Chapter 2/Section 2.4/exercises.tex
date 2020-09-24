@@ -1,0 +1,114 @@
+\documentclass[12pt]{article}
+\usepackage{
+  enumitem,
+  extsizes,
+  amsfonts,
+  braket,
+  amsmath,
+  ragged2e,
+  physics,
+  amsthm,
+  textcomp,
+  gensymb,
+  booktabs
+}
+
+% Thanks to Heiko Oberdiek for this solution to enumerations with odd numbers only
+% found here:
+% https://tex.stackexchange.com/questions/184198/skipping-every-even-numbered-item-in-the-enumerate-environment
+\makeatletter
+\newcommand*{\arabicodd}[1]{%
+  \expandafter\@arabicodd\csname c@#1\endcsname
+}
+\newcommand*{\arabiceven}[1]{%
+  \expandafter\@arabiceven\csname c@#1\endcsname
+}
+\newcommand*{\@arabicodd}[1]{%
+  \@arabic{\numexpr(#1)*2-1\relax}%
+}
+\newcommand*{\@arabiceven}[1]{%
+  \@arabic{\numexpr(#1)*2\relax}%
+}
+
+\AddEnumerateCounter\arabicodd\@arabicodd{0}
+\AddEnumerateCounter\arabiceven\@arabiceven{0}
+\makeatother
+% end arabic odd/even definition
+
+% Define a closed sqrt function to have a tail
+% this more clearly defines the scope of the root
+% Source: https://en.wikibooks.org/wiki/LaTeX/Mathematics#Roots
+% it renames \sqrt as \oldsqrt
+\let\oldsqrt\sqrt
+% it defines the new \sqrt in terms of the old one
+\def\sqrt{\mathpalette\DHLhksqrt}
+\def\DHLhksqrt#1#2{%
+\setbox0=\hbox{$#1\oldsqrt{#2\,}$}\dimen0=\ht0
+\advance\dimen0-0.2\ht0
+\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+{\box0\lower0.4pt\box2}}
+%
+
+\parindent=0pt
+\renewcommand\qedsymbol{Q.E.D.}
+
+\title{Section 2.4 Exercises}
+\author{David Piper}
+
+\begin{document}
+\maketitle
+
+% The start index is the ith odd number, not the actual value
+\begin{enumerate}[label=2.\arabicodd*, start=10]
+  \item
+        \begin{enumerate}[label=(\alph*)]
+          \item $17$ is odd. True.
+          \item Either $17$ is even or $19$ is prime. True.
+          \item It is the case that $17$ is even and $19$ is prime. False.
+          \item If $17$ is even, then $19$ is prime. True.
+        \end{enumerate}
+  \item Given the statements: $P: \sqrt{2}$ is rational and $Q: \dfrac{22}{7}$ is rational.
+        \begin{enumerate}[label=(\alph*)]
+          \item If $\sqrt{2}$ is rational, then $\dfrac{22}{7}$ is rational. True.
+          \item If $\dfrac{22}{7}$ is rational, then $\sqrt{2}$ is rational. False.
+          \item If $\sqrt{2}$ is irrational, then $\dfrac{22}{7}$ is irrational. False.
+          \item If $\dfrac{22}{7}$ is irrational, then $\sqrt{2}$ is irrational. True.
+        \end{enumerate}
+  \item
+        \begin{enumerate}[label=(\alph*)]
+          \item True.
+          \item False.
+          \item True.
+          \item True.
+          \item False.
+        \end{enumerate}
+  \item
+        \begin{enumerate}[label=(\alph*)]
+          \item True.
+          \item False.
+          \item True.
+          \item True.
+          \item True.
+        \end{enumerate}
+  \item Don and Cindy went to the lecture. This follows from the fact that Cindy
+        can go despite Ben not going (the implication is still true) and if Cindy goes
+        then Don must go. Any other combination would have resulted in more than two
+        students attending.
+  \item Which of the following implies that $P \lor Q$ is false?
+        \begin{enumerate}[label=(\alph*)]
+          \item In this case $P \lor Q$ must be true because the only
+                way that $\qty(\sim P) \lor \qty(\sim Q)$ is false is when both
+                $P$ and $Q$ are true.
+          \item In this case we cannot know whether $P$ is false or
+                $Q$ is true, so $P \lor Q$ can be true without any
+                contradictions.
+          \item Since both $P$ and $Q$ are false their disjunction must
+                also be false.
+          \item Since $Q \implies P$ it is possible that $P \lor Q$ is true.
+          \item Since the conjunction is false we know that at least one of them
+                is false, however it could be the case that one is true so $P \lor Q$
+                could still be true.
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}
