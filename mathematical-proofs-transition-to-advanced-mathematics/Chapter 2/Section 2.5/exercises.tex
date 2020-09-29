@@ -1,0 +1,185 @@
+\documentclass[12pt]{article}
+\usepackage{
+  enumitem,
+  extsizes,
+  amsfonts,
+  braket,
+  amsmath,
+  ragged2e,
+  physics,
+  amsthm,
+  textcomp,
+  gensymb,
+  booktabs
+}
+
+% Thanks to Heiko Oberdiek for this solution to enumerations with odd numbers only
+% found here:
+% https://tex.stackexchange.com/questions/184198/skipping-every-even-numbered-item-in-the-enumerate-environment
+\makeatletter
+\newcommand*{\arabicodd}[1]{%
+  \expandafter\@arabicodd\csname c@#1\endcsname
+}
+\newcommand*{\arabiceven}[1]{%
+  \expandafter\@arabiceven\csname c@#1\endcsname
+}
+\newcommand*{\@arabicodd}[1]{%
+  \@arabic{\numexpr(#1)*2-1\relax}%
+}
+\newcommand*{\@arabiceven}[1]{%
+  \@arabic{\numexpr(#1)*2\relax}%
+}
+
+\AddEnumerateCounter\arabicodd\@arabicodd{0}
+\AddEnumerateCounter\arabiceven\@arabiceven{0}
+\makeatother
+% end arabic odd/even definition
+
+% Define a closed sqrt function to have a tail
+% this more clearly defines the scope of the root
+% Source: https://en.wikibooks.org/wiki/LaTeX/Mathematics#Roots
+% it renames \sqrt as \oldsqrt
+\let\oldsqrt\sqrt
+% it defines the new \sqrt in terms of the old one
+\def\sqrt{\mathpalette\DHLhksqrt}
+\def\DHLhksqrt#1#2{%
+\setbox0=\hbox{$#1\oldsqrt{#2\,}$}\dimen0=\ht0
+\advance\dimen0-0.2\ht0
+\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+{\box0\lower0.4pt\box2}}
+%
+
+\parindent=0pt
+\renewcommand\qedsymbol{Q.E.D.}
+
+\title{Section 2.5 Exercises}
+\author{David Piper}
+
+\begin{document}
+\maketitle
+
+% The start index is the ith odd number, not the actual value
+\begin{enumerate}[label=2.\arabicodd*, start=16]
+  \item
+    \begin{enumerate}[label=(\alph*)]
+      \item Given the open sentences $P\qty(x): \abs{x} = 4$ and $Q\qty(x): x = 4$
+            over the domain $S = \set{-4,-3,1,4,5}.$
+            We have the following truth values for $P\qty(x) \implies Q\qty(x)$ for each
+            $x \in S.$
+            \begin{gather*}
+              P\qty(-4) \implies Q\qty(-4)\\
+              T \implies F\\
+              \qq{False.}\\
+              P\qty(-3) \implies Q\qty(-3)\\
+              F \implies F\\
+              \qq{True.}\\
+              P\qty(1) \implies Q\qty(1)\\
+              F \implies F\\
+              \qq{True.}\\
+              P\qty(4) \implies Q\qty(4)\\
+              T \implies T\\
+              \qq{True.}\\
+              P\qty(5) \implies Q\qty(5)\\
+              F \implies F\\
+              \qq{True.}\\
+            \end{gather*}
+      \item Given the open sentences $P\qty(x): x^{2} = 16$ and $Q\qty(x): \abs{x} = 4$
+            over the domain $S = \set{-6,-4,0,3,4,8}.$
+            We have the following truth values for $P\qty(x) \implies Q\qty(x)$ for each
+            $x \in S.$
+            \begin{gather*}
+              P\qty(-6) \implies Q\qty(-6)\\
+              F \implies F\\
+              \qq{True.}\\
+              P\qty(-4) \implies Q\qty(-4)\\
+              T \implies T\\
+              \qq{True.}\\
+              P\qty(0) \implies Q\qty(0)\\
+              F \implies F\\
+              \qq{True.}\\
+              P\qty(3) \implies Q\qty(3)\\
+              F \implies F\\
+              \qq{True.}\\
+              P\qty(4) \implies Q\qty(4)\\
+              T \implies T\\
+              \qq{True.}\\
+              P\qty(8) \implies Q\qty(8)\\
+              F \implies F\\
+              \qq{True.}\\
+            \end{gather*}
+      \item Given the open sentences $P\qty(x): x > 3$ and $Q\qty(x): 4x - 1 > 12$
+            over the domain $S = \set{0,2,3,4,6}.$
+            We have the following truth values for $P\qty(x) \implies Q\qty(x)$ for each
+            $x \in S.$
+            \begin{gather*}
+              P\qty(0) \implies Q\qty(0)\\
+              F \implies F\\
+              \qq{True.}\\
+              P\qty(2) \implies Q\qty(2)\\
+              F \implies F\\
+              \qq{True.}\\
+              P\qty(3) \implies Q\qty(3)\\
+              F \implies F\\
+              \qq{True.}\\
+              P\qty(4) \implies Q\qty(4)\\
+              T \implies T\\
+              \qq{True.}\\
+              P\qty(6) \implies Q\qty(6)\\
+              T \implies T\\
+              \qq{True.}\\
+            \end{gather*}
+    \end{enumerate}
+    \item
+      \begin{enumerate}[label=(\alph*)]
+        \item Given the open sentences $P\qty(x,y): x^2 - y^2 = 0$ and $Q\qty(x,y): x = y$
+              over the domain $S = \set{\qty(1,-1),\qty(3,4),\qty(5,5)}.$
+              We have the following truth values for $P\qty(x,y) \implies Q\qty(x,y)$ for each
+              given values of $x$ and $y.$
+              \begin{gather*}
+                P\qty(1,-1) \implies Q\qty(1,-1)\\
+                T \implies F\\
+                \qq{False.}\\
+                P\qty(3,4) \implies Q\qty(3,4)\\
+                F \implies F\\
+                \qq{True.}\\
+                P\qty(5,5) \implies Q\qty(5,5)\\
+                T \implies T\\
+                \qq{True.}\\
+              \end{gather*}
+        \item Given the open sentences $P\qty(x,y): \abs{x} = \abs{y}$ and $Q\qty(x,y): x = y$
+              over the domain $S = \set{\qty(1,2),\qty(2,-2),\qty(6,6)}.$
+              We have the following truth values for $P\qty(x,y) \implies Q\qty(x,y)$ for each
+              given values of $x$ and $y.$
+              \begin{gather*}
+                P\qty(1,2) \implies Q\qty(1,2)\\
+                F \implies F\\
+                \qq{True.}\\
+                P\qty(2,-2) \implies Q\qty(2,-2)\\
+                T \implies F\\
+                \qq{False.}\\
+                P\qty(6,6) \implies Q\qty(6,6)\\
+                T \implies T\\
+                \qq{True.}\\
+              \end{gather*}
+        \item Given the open sentences $P\qty(x,y): x^2 + y^2 = 1$ and $Q\qty(x,y): x + y = 1$
+              over the domain $S = \set{\qty(1,-1),\qty(-3,4),\qty(0,-1),\qty(1,0)}.$
+              We have the following truth values for $P\qty(x,y) \implies Q\qty(x,y)$ for each
+              given values of $x$ and $y.$
+              \begin{gather*}
+                P\qty(1,-1) \implies Q\qty(1,-1)\\
+                F \implies F\\
+                \qq{True.}\\
+                P\qty(-3,4) \implies Q\qty(-3,4)\\
+                F \implies T\\
+                \qq{True.}\\
+                P\qty(0,-1) \implies Q\qty(0,-1)\\
+                T \implies F\\
+                \qq{False.}\\
+                P\qty(1,0) \implies Q\qty(1,0)\\
+                T \implies T\\
+                \qq{True.}\\
+              \end{gather*}
+      \end{enumerate}
+\end{enumerate}
+
+\end{document}
