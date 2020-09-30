@@ -1,0 +1,101 @@
+\documentclass[12pt]{article}
+\usepackage{
+  enumitem,
+  extsizes,
+  amsfonts,
+  braket,
+  amsmath,
+  ragged2e,
+  physics,
+  amsthm,
+  textcomp,
+  gensymb,
+  booktabs,
+}
+
+% Thanks to Heiko Oberdiek for this solution to enumerations with odd numbers only
+% found here:
+% https://tex.stackexchange.com/questions/184198/skipping-every-even-numbered-item-in-the-enumerate-environment
+\makeatletter
+\newcommand*{\arabicodd}[1]{%
+  \expandafter\@arabicodd\csname c@#1\endcsname
+}
+\newcommand*{\arabiceven}[1]{%
+  \expandafter\@arabiceven\csname c@#1\endcsname
+}
+\newcommand*{\@arabicodd}[1]{%
+  \@arabic{\numexpr(#1)*2-1\relax}%
+}
+\newcommand*{\@arabiceven}[1]{%
+  \@arabic{\numexpr(#1)*2\relax}%
+}
+
+\AddEnumerateCounter\arabicodd\@arabicodd{0}
+\AddEnumerateCounter\arabiceven\@arabiceven{0}
+\makeatother
+% end arabic odd/even definition
+
+% Define a closed sqrt function to have a tail
+% this more clearly defines the scope of the root
+% Source: https://en.wikibooks.org/wiki/LaTeX/Mathematics#Roots
+% it renames \sqrt as \oldsqrt
+\let\oldsqrt\sqrt
+% it defines the new \sqrt in terms of the old one
+\def\sqrt{\mathpalette\DHLhksqrt}
+\def\DHLhksqrt#1#2{%
+\setbox0=\hbox{$#1\oldsqrt{#2\,}$}\dimen0=\ht0
+\advance\dimen0-0.2\ht0
+\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+{\box0\lower0.4pt\box2}}
+%
+
+
+\parindent=0pt
+\renewcommand\qedsymbol{Q.E.D.}
+
+\title{Section 2.6 Exercises}
+\author{David Piper}
+
+\begin{document}
+\maketitle
+
+% The start index is the ith odd number, not the actual value
+\begin{enumerate}[label=2.\arabicodd*, start=18]
+  \item Let $P: 18$ is odd and $Q: 25$ is even. Then $P \iff Q$ can be written
+        as $18$ is odd if and only if $25$ is even. Furthermore  $P \iff Q$ is true.
+  \item For the open sentences $P\qty(x): \abs{x-3} < 1$ and $Q\qty(x): x \in \qty(2,4)$
+        over the domain $\mathbb{R}$ the biconditional $P\qty(x) \iff Q\qty(x)$ can be
+        stated in a few different ways including the following.
+        \begin{enumerate}[label=\arabic*.]
+          \item $\abs{x-3}<1$ if and only if $x \in \qty(2,4).$
+          \item $\abs{x-3}<1$ is equivalent to $x \in \qty(2,4).$
+        \end{enumerate}
+  \item For the following open sentences $P\qty(x)$ and $Q\qty(x)$ over a domain
+        $S,$ determine all values of $x \in S$ for which the biconditional
+        $P\qty(x) \iff Q\qty(x)$ is true.
+        \begin{enumerate}[label=(\alph*)]
+          \item $P\qty(x): \abs{x}=4; Q\qty(x): x=4; S=\set{-4,-3,1,4,5}.$
+                This has the following corresponding truth table.
+                \hfill
+                \hfill
+                \linebreak
+                \linebreak
+                \begin{minipage}{0.4\linewidth}
+                % \begin{table}[htp]
+                  \begin{tabular}{@{}llllll@{}}
+                    \toprule
+                    x    & -4 & 3 & 1 & 4 & 5 \\ \midrule
+                    P(x) & T  & F & F & T & F \\
+                    Q(x) & F  & F & F & T & F \\
+                         &    &   &   &   &   \\ \bottomrule
+                  \end{tabular}
+                % \end{table}
+                \end{minipage}
+                \linebreak
+                \linebreak
+                From this truth table we can observe that $P\qty(x) \iff Q\qty(x)$
+                is false when $x=-4$ and true for all other vales of $x \in S.$
+        \end{enumerate}
+\end{enumerate}
+
+\end{document}
