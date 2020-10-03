@@ -81,21 +81,126 @@
                 \linebreak
                 \linebreak
                 \begin{minipage}{0.4\linewidth}
-                % \begin{table}[htp]
                   \begin{tabular}{@{}llllll@{}}
                     \toprule
                     x    & -4 & 3 & 1 & 4 & 5 \\ \midrule
                     P(x) & T  & F & F & T & F \\
-                    Q(x) & F  & F & F & T & F \\
-                         &    &   &   &   &   \\ \bottomrule
+                    Q(x) & F  & F & F & T & F \\ \bottomrule
                   \end{tabular}
-                % \end{table}
                 \end{minipage}
                 \linebreak
                 \linebreak
                 From this truth table we can observe that $P\qty(x) \iff Q\qty(x)$
                 is false when $x=-4$ and true for all other vales of $x \in S.$
+          \item $P\qty(x): x \geq 3; Q\qty(x): 4x-1 > 12; S=\set{0,2,3,4,6}.$
+                This has the following corresponding truth table.
+                \hfill
+                \hfill
+                \linebreak
+                \linebreak
+                \begin{minipage}{0.4\linewidth}
+                  \begin{tabular}{@{}llllll@{}}
+                    \toprule
+                    x    & 0 & 2 & 3 & 4 & 6 \\ \midrule
+                    P(x) & F & F & T & T & T \\
+                    Q(x) & F & F & F & T & T \\ \bottomrule
+                  \end{tabular}
+                \end{minipage}
+                \linebreak
+                \linebreak
+                From this truth table we can observe that $P\qty(x) \iff Q\qty(x)$
+                is false when $x=3$ and true for all other vales of $x \in S.$
+          \item $P\qty(x): x^2 = 16; Q\qty(x): x^2 - 4x = 0; S=\set{-6,-4,0,3,4,8}.$
+                This has the following corresponding truth table.
+                \hfill
+                \hfill
+                \linebreak
+                \linebreak
+                \begin{minipage}{0.4\linewidth}
+                  \begin{tabular}{@{}lllllll@{}}
+                    \toprule
+                    x    & -6 & -4 & 0 & 3 & 4 & 8 \\ \midrule
+                    P(x) & F  & T  & F & F & T & F \\
+                    Q(x) & F  & F  & T & F & T & F \\ \bottomrule
+                  \end{tabular}
+                \end{minipage}
+                \linebreak
+                \linebreak
+                From this truth table we can observe that $P\qty(x) \iff Q\qty(x)$
+                is false when $x=-4$ and when $x=0$ and true for all other vales of $x \in S.$
         \end{enumerate}
-\end{enumerate}
+  \item The task is to determine all values of $n$ in the domain $S=\set{1,2,3}$
+        for which the following is a true statement: A necessary and sufficient
+        condition for $\dfrac{n^3+n}{2}$ to be even is that $\dfrac{n^2+n}{2}$
+        is odd.
 
+        First we may observe that this question is really a biconditional question
+        with two open sentences over the domain $S.$ Given this, we can rewrite
+        the problem by saying that we are given two sentences $P\qty(n): \dfrac{n^3+n}{2}$ is even
+        and $Q\qty(n): \dfrac{n^2+n}{2}$ is odd over the domain $S=\set{1,2,3}.$
+
+        This has the following truth table.
+        \hfill
+        \hfill
+        \linebreak
+        \linebreak
+        \begin{minipage}{0.4\linewidth}
+          \begin{tabular}{@{}llll@{}}
+            \toprule
+            n    & 1 & 2 & 3 \\ \midrule
+            P(n) & F & F & F \\
+            Q(n) & T & T & F \\ \bottomrule
+          \end{tabular}
+        \end{minipage}
+        \linebreak
+        \linebreak
+        From this truth table we can observe that $P\qty(n) \iff Q\qty(n)$
+        is true when $n=3$ and is false for all other vales of $n \in S.$
+  \item Given two open sentences $P\qty(n): \dfrac{\qty(n+4)\qty(n+5)}{2}$ is odd
+        and $Q\qty(n): 2^{n-2} + 3^{n-2} + 6^{n-2} > \qty(2.5)^{n-1}$ over the domain $S=\set{1,2,3}.$
+        We need to determine three distinct elements $a,b,c$ in $S$ such that
+        $P\qty(a) \implies Q\qty(a)$ is false, $Q\qty(b) \implies P\qty(b)$ is false
+        and $P\qty(c) \iff Q\qty(c)$ is true.
+
+        First let us observe that these statements have the following truth table.
+        \hfill
+        \hfill
+        \linebreak
+        \linebreak
+        \begin{minipage}{0.4\linewidth}
+          \begin{tabular}{@{}llll@{}}
+            \toprule
+            n    & 1 & 2 & 3 \\ \midrule
+            P(n) & T & T & F \\
+            Q(n) & F & T & T \\ \bottomrule
+          \end{tabular}
+        \end{minipage}
+        \linebreak
+        \linebreak
+        From this truth table we can observe that $P\qty(a) \implies Q\qty(a)$ is false
+        when $a=1,$ $Q\qty(b) \implies P\qty(b)$ is false when $b=3,$ and
+        $P\qty(c) \iff Q\qty(c)$ is true when $c=2.$
+  \item Given two open sentences $P\qty(n): 2^n - 1$ is prime
+        and $Q\qty(n): n$ is prime over the domain $S=\set{2,3,4,5,6,11}.$
+        We need to determine all values of $n \in S$ for which $P\qty(n) \iff Q\qty(n)$
+        is a true statement.
+
+        First let us observe that these statements have the following truth table.
+        \hfill
+        \hfill
+        \linebreak
+        \linebreak
+        \begin{minipage}{0.4\linewidth}
+          \begin{tabular}{@{}lllllll@{}}
+            \toprule
+            n    & 2 & 3 & 4 & 5 & 6 & 11 \\ \midrule
+            P(n) & T & T & F & T & F & F  \\
+            Q(n) & T & T & F & T & F & T  \\ \bottomrule
+          \end{tabular}
+        \end{minipage}
+        \linebreak
+        \linebreak
+        From this truth table we can observe that $P\qty(n) \iff Q\qty(n)$ is
+        false when $n=11$ and true for all other values of $n \in S.$
+\end{enumerate}
 \end{document}
