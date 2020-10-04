@@ -1,0 +1,91 @@
+\documentclass[12pt]{article}
+\usepackage{
+  enumitem,
+  extsizes,
+  amsfonts,
+  braket,
+  amsmath,
+  ragged2e,
+  physics,
+  amsthm,
+  textcomp,
+  gensymb,
+  booktabs,
+}
+
+% Thanks to Heiko Oberdiek for this solution to enumerations with odd numbers only
+% found here:
+% https://tex.stackexchange.com/questions/184198/skipping-every-even-numbered-item-in-the-enumerate-environment
+\makeatletter
+\newcommand*{\arabicodd}[1]{%
+  \expandafter\@arabicodd\csname c@#1\endcsname
+}
+\newcommand*{\arabiceven}[1]{%
+  \expandafter\@arabiceven\csname c@#1\endcsname
+}
+\newcommand*{\@arabicodd}[1]{%
+  \@arabic{\numexpr(#1)*2-1\relax}%
+}
+\newcommand*{\@arabiceven}[1]{%
+  \@arabic{\numexpr(#1)*2\relax}%
+}
+
+\AddEnumerateCounter\arabicodd\@arabicodd{0}
+\AddEnumerateCounter\arabiceven\@arabiceven{0}
+\makeatother
+% end arabic odd/even definition
+
+% Define a closed sqrt function to have a tail
+% this more clearly defines the scope of the root
+% Source: https://en.wikibooks.org/wiki/LaTeX/Mathematics#Roots
+% it renames \sqrt as \oldsqrt
+\let\oldsqrt\sqrt
+% it defines the new \sqrt in terms of the old one
+\def\sqrt{\mathpalette\DHLhksqrt}
+\def\DHLhksqrt#1#2{%
+\setbox0=\hbox{$#1\oldsqrt{#2\,}$}\dimen0=\ht0
+\advance\dimen0-0.2\ht0
+\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+{\box0\lower0.4pt\box2}}
+%
+
+
+\parindent=0pt
+\renewcommand\qedsymbol{Q.E.D.}
+
+\title{Section 2.9 Exercises}
+\author{David Piper}
+
+\begin{document}
+\maketitle
+
+% The start index is the ith odd number, not the actual value
+\begin{enumerate}[label=2.\arabicodd*, start=31]
+  \item \begin{enumerate}[label=(\alph*)]
+    \item The negation of the open sentence ``Either $x=0$ or $y=0$.'' is
+          ``Both $x \neq 0$ and $y \neq 0$.'' by DeMorgan's Law.
+    \item The negation of the open sentence ``The integers $a$ and $b$ are both even.''
+          is ``At least one of the integers $a$ and $b$ are odd.'' by DeMorgan's Law.
+  \end{enumerate}
+  \item For a real number $x,$ let $P\qty(x): x^2 =2$ and $Q\qty(x): x = \sqrt{2}.$
+        We want to state the negation of the biconditional $P \iff Q$ in words.
+        First we need to find a logically equivalent version of the negation of this
+        biconditional, which we can do using Theorem 2.25(b). This theorem says
+        that $\sim\qty(P \iff Q) \equiv \qty(P \land \qty(\sim Q)) \lor \qty(Q \land \qty(\sim P)).$
+
+        If we state this logically equivalent version in words then we have the
+        statement ``Either $x^2=2$ and $x \neq \sqrt{2}$ or $x=\sqrt{2}$ and $x^2 \neq 2.$''
+  \item For a natural number $n,$ we are given the compound statement 3n + 4 is odd and 5n - 6 is even.
+        We want to find an implication such that its negation is this given compound statement.
+        From Theorem 2.25(a) we know that $\sim \qty(P \implies Q) \equiv P \land \qty(\sim Q).$
+        So to make our given statements match this form we should first take the
+        first statement to be $P\qty(n)$ and then take the negation of the second
+        statement to be $Q\qty(n).$
+
+        Now we have two statements $P\qty(n): 3n + 4$ is odd and $Q\qty(n): 5n - 6$ is odd and we
+        can restate our given compound statement as $P \land \qty(\sim Q).$ Therefore, by Theorem 2.25(a)
+        we can restate this statement in its logically equivalent form of $\sim \qty(P \implies Q).$
+        Looking at this we can observe that the implication whose negation gives us the original statement
+        is simply $P \implies Q$ which we can write in words as ``If $3n +4$ is odd then $5n - 6$ is odd.''
+\end{enumerate}
+\end{document}
