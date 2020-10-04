@@ -1,0 +1,242 @@
+\documentclass[12pt]{article}
+\usepackage{
+  enumitem,
+  extsizes,
+  amsfonts,
+  braket,
+  amsmath,
+  ragged2e,
+  physics,
+  amsthm,
+  textcomp,
+  gensymb,
+  booktabs,
+}
+
+% Thanks to Heiko Oberdiek for this solution to enumerations with odd numbers only
+% found here:
+% https://tex.stackexchange.com/questions/184198/skipping-every-even-numbered-item-in-the-enumerate-environment
+\makeatletter
+\newcommand*{\arabicodd}[1]{%
+  \expandafter\@arabicodd\csname c@#1\endcsname
+}
+\newcommand*{\arabiceven}[1]{%
+  \expandafter\@arabiceven\csname c@#1\endcsname
+}
+\newcommand*{\@arabicodd}[1]{%
+  \@arabic{\numexpr(#1)*2-1\relax}%
+}
+\newcommand*{\@arabiceven}[1]{%
+  \@arabic{\numexpr(#1)*2\relax}%
+}
+
+\AddEnumerateCounter\arabicodd\@arabicodd{0}
+\AddEnumerateCounter\arabiceven\@arabiceven{0}
+\makeatother
+% end arabic odd/even definition
+
+% Define a closed sqrt function to have a tail
+% this more clearly defines the scope of the root
+% Source: https://en.wikibooks.org/wiki/LaTeX/Mathematics#Roots
+% it renames \sqrt as \oldsqrt
+\let\oldsqrt\sqrt
+% it defines the new \sqrt in terms of the old one
+\def\sqrt{\mathpalette\DHLhksqrt}
+\def\DHLhksqrt#1#2{%
+\setbox0=\hbox{$#1\oldsqrt{#2\,}$}\dimen0=\ht0
+\advance\dimen0-0.2\ht0
+\setbox2=\hbox{\vrule height\ht0 depth -\dimen0}%
+{\box0\lower0.4pt\box2}}
+%
+
+
+\parindent=0pt
+\renewcommand\qedsymbol{Q.E.D.}
+
+\title{Section 2.8 Exercises}
+\author{David Piper}
+
+\begin{document}
+\maketitle
+
+% The start index is the ith odd number, not the actual value
+\begin{enumerate}[label=2.\arabicodd*, start=27]
+  \item
+        \begin{enumerate}[label=(\alph*)]
+          \item
+                For the statements $P$ and $Q$ we want to show that $\qty(\sim P) \implies \qty(\sim Q)$
+                and $P \implies Q$ are not logically equivalent.
+                We start by observing that these statements have the following
+                truth table.
+                \hfill
+                \hfill
+                \linebreak
+                \linebreak
+                \begin{minipage}{\linewidth}
+                  \small
+                  \begin{tabular}{@{}lllll@{}}
+                    \toprule
+                    P & Q & $\qty(\sim P) \implies \qty(\sim Q)$ & $P \implies Q$ \\ \midrule
+                    T & T & T                                    & T              \\
+                    T & F & T                                    & F              \\
+                    F & T & F                                    & T              \\
+                    F & F & T                                    & T              \\
+                    \bottomrule
+                  \end{tabular}
+                \end{minipage}
+                \linebreak
+                \linebreak
+                \linebreak
+                \linebreak
+                From this truth table we can observe that the values for the
+                statements $\qty(\sim P) \implies \qty(\sim Q)$ and $P \implies Q$
+                are not the same in all of their respective rows, which means that
+                they are not logically equivalent.
+          \item Another implication that is logically equivalent to $\qty(\sim P) \implies \qty(\sim Q)$
+                is $Q \implies P.$ To verify this observe that these statements have the following truth table.
+                \hfill
+                \hfill
+                \linebreak
+                \linebreak
+                \begin{minipage}{\linewidth}
+                  \small
+                  \begin{tabular}{@{}lllll@{}}
+                    \toprule
+                    P & Q & $\qty(\sim P) \implies \qty(\sim Q)$ & $Q \implies P$ \\ \midrule
+                    T & T & T                                    & T              \\
+                    T & F & T                                    & T              \\
+                    F & T & F                                    & F              \\
+                    F & F & T                                    & T              \\
+                    \bottomrule
+                  \end{tabular}
+                \end{minipage}
+                \linebreak
+                \linebreak
+                \linebreak
+                \linebreak
+                From this truth table we can observe that the values for the
+                statements $\qty(\sim P) \implies \qty(\sim Q)$ and $Q \implies P$
+                are the same in all of their respective rows, which means that
+                they are logically equivalent.
+        \end{enumerate}
+  \item \begin{enumerate}[label=(\alph*)]
+          \item
+                For the statements $P, Q$ and $R$ we want to show that $\qty(P \land Q) \iff P$
+                and $P \implies Q$ are logically equivalent.
+                We start by observing that these statements have the following
+                truth table.
+                \hfill
+                \hfill
+                \linebreak
+                \linebreak
+                \begin{minipage}{\linewidth}
+                  \small
+                  \begin{tabular}{@{}lllll@{}}
+                    \toprule
+                    P & Q & $\qty(P \land Q) \iff P$ & $P \implies Q$ \\ \midrule
+                    T & T & T                        & T              \\
+                    T & F & F                        & F              \\
+                    F & T & T                        & T              \\
+                    F & F & T                        & T              \\
+                    \bottomrule
+                  \end{tabular}
+                \end{minipage}
+                \linebreak
+                \linebreak
+                \linebreak
+                \linebreak
+                From this truth table we can observe that the values for the
+                statements $\qty(P \land Q) \iff P$ and $P \implies Q$
+                are the same in all of their respective rows, which means that
+                they are logically equivalent.
+          \item
+                For the statements $P, Q$ and $R$ we want to show that $P \implies \qty(Q \lor R)$
+                and $\qty(\sim Q) \implies \qty(\qty(\sim P) \lor R)$ are logically equivalent.
+                We start by observing that these statements have the following
+                truth table.
+                \hfill
+                \hfill
+                \linebreak
+                \linebreak
+                \begin{minipage}{\linewidth}
+                  \small
+                  \begin{tabular}{@{}lllllll@{}}
+                    \toprule
+                    P & Q & R & $Q \lor R$ & $P \implies \qty(Q \lor R)$ & $\qty(\sim P) \lor R$ & $\qty(\sim Q) \implies \qty(\qty(\sim P) \lor R)$ \\ \midrule
+                    T & T & T & T          & T                           & T                     & T                                                 \\
+                    T & T & F & T          & T                           & F                     & T                                                 \\
+                    T & F & T & T          & T                           & T                     & T                                                 \\
+                    T & F & F & F          & F                           & F                     & F                                                 \\
+                    F & T & T & T          & T                           & T                     & T                                                 \\
+                    F & T & F & T          & T                           & T                     & T                                                 \\
+                    F & F & T & T          & T                           & T                     & T                                                 \\
+                    F & F & F & F          & T                           & T                     & T                                                 \\
+                    \bottomrule
+                  \end{tabular}
+                \end{minipage}
+                \linebreak
+                \linebreak
+                \linebreak
+                \linebreak
+                From this truth table we can observe that the values for the
+                statements $P \implies \qty(Q \lor R)$ and $\qty(\sim Q) \implies \qty(\qty(\sim P) \lor R)$
+                are the same in all of their respective rows, which means that
+                they are logically equivalent.
+        \end{enumerate}
+  \item
+        For the statements $P, Q$ and $R$ we want to show that $\qty(P \lor Q) \implies R$
+        and $\qty(P \implies R) \land \qty(Q \implies R)$ are logically equivalent.
+        We start by observing that these statements have the following
+        truth table.
+        \hfill
+        \hfill
+        \linebreak
+        \linebreak
+        \begin{minipage}{\linewidth}
+          \small
+          \begin{tabular}{@{}lllllll@{}}
+            \toprule
+            P & Q & R & $P \lor Q \implies R$ & $P \implies R$ & $Q \implies R$ & $\qty(P \implies R) \land \qty(Q \implies R)$ \\ \midrule
+            T & T & T & T                     & T              & T              & T                                             \\
+            T & T & F & F                     & F              & F              & F                                             \\
+            T & F & T & T                     & T              & T              & T                                             \\
+            T & F & F & F                     & F              & T              & F                                             \\
+            F & T & T & T                     & T              & T              & T                                             \\
+            F & T & F & F                     & T              & F              & F                                             \\
+            F & F & T & T                     & T              & T              & T                                             \\
+            F & F & F & T                     & T              & T              & T                                             \\
+            \bottomrule
+          \end{tabular}
+        \end{minipage}
+        \linebreak
+        \linebreak
+        \linebreak
+        \linebreak
+        From this truth table we can observe that the values for the
+        statements $\qty(P \lor Q) \implies R$
+        and $\qty(P \implies R) \land \qty(Q \implies R)$
+        are the same in all of their respective rows, which means that
+        they are logically equivalent.
+    \item \begin{proof}
+      We are given five compound statements: $S_1, S_2, S_3, S_4$ and $S_5;$
+      which we are also told are all comprised of the same statements $P$
+      and $Q$ and they have truth tables which have the same values on the
+      first and fourth rows.
+
+      We want to show that at least two of these five statements must be
+      logically equivalent given these facts.
+
+      Since the statements have identical truth values in the first and fourth rows
+      then we may observe that this acts as a selection of the possible values for
+      those rows. That is, for each row generally we may choose any possible value
+      of True or False for each cell, but since we know that two rows are identical
+      these are already chosen for us.
+
+      Since these are already chosen, we have reduced the possible combinations
+      from $2^4$ to $2^2$ for the remaining rows. Since we have five compound
+      statements and only $4$ possible different values for the remaining rows
+      then we know that at least one of these five must have the same value
+      as one of the others.
+    \end{proof}
+\end{enumerate}
+\end{document}
