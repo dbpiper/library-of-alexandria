@@ -11,7 +11,6 @@
   textcomp,
   gensymb,
   booktabs,
-  rotating,
 }
 
 % Thanks to Heiko Oberdiek for this solution to enumerations with odd numbers only
@@ -118,20 +117,67 @@
         \linebreak
         \linebreak
         \begin{minipage}{\linewidth}
-          \begin{sidewaystable}
-            \begin{tabular}{@{}llllllll@{}}
-              \toprule
-              P & Q & R & $P \implies Q$ & $Q \implies R$ & $\qty(P \implies Q) \land \qty(Q \implies R)$ & $P \implies R$ & $\qty(\qty(P \implies Q) \land \qty(Q \implies R)) \implies \qty(P \implies R)$ \\ \midrule
-              % T & T & F        & F                      & T           & F                                                  \\
-              % T & F & T        & T                      & F           & F                                                  \\
-              % F & T & F        & F                      & F           & F                                                  \\
-              % F & F & T        & F                      & F           & F                                                  \\ \bottomrule
-            \end{tabular}
-          \end{sidewaystable}
+          \small
+          \begin{tabular}{@{}lllllll@{}}
+            \toprule
+            P & Q & R & $P \implies Q$ & $Q \implies R$ & $\qty(P \implies Q) \land \qty(Q \implies R)$ & $P \implies R$ \\ \midrule
+            T & T & T & T              & T              & T                                             & T              \\
+            T & T & F & T              & F              & F                                             & F              \\
+            T & F & T & F              & T              & F                                             & T              \\
+            T & F & F & F              & T              & F                                             & F              \\
+            F & T & T & T              & T              & T                                             & T              \\
+            F & T & F & T              & F              & F                                             & T              \\
+            F & F & T & T              & T              & T                                             & T              \\
+            F & F & F & T              & T              & T                                             & T              \\ \bottomrule
+          \end{tabular}
+          \small
+          \linebreak
+          \linebreak
+          \linebreak
+          \linebreak
+          \begin{tabular}{@{}l@{}}
+            \toprule
+            $\qty(\qty(P \implies Q) \land \qty(Q \implies R)) \implies \qty(P \implies R)$ \\ \midrule
+            T                                                                               \\
+            T                                                                               \\
+            T                                                                               \\
+            T                                                                               \\
+            T                                                                               \\
+            T                                                                               \\
+            T                                                                               \\ \bottomrule
+          \end{tabular}
         \end{minipage}
         \linebreak
         \linebreak
-        From this truth table we can observe that $\qty(P \land \qty(\sim Q)) \land \qty(P \land Q)$ is
-        false for all possible values of P and Q, thus it is a contradiction.
+        From this truth table we can observe that $\qty(\qty(P \implies Q) \land \qty(Q \implies R)) \implies \qty(P \implies R)$
+        is true for all possible values of P, Q and R; thus it is a tautology.
+        If we restate this compound statement in words we have the following:
+        If P implies Q and Q implies R then it follows that P implies R.
+  \item
+        For the statements $P$ and $Q$ we want to find out if $\qty(P \lor Q) \lor \qty(Q \implies P)$
+        is a tautology, contradiction, or neither. First let us observe that these statements have the following
+        truth table.
+        \hfill
+        \hfill
+        \linebreak
+        \linebreak
+        \begin{minipage}{\linewidth}
+          \small
+          \begin{tabular}{@{}lllll@{}}
+            \toprule
+            P & Q & $P \lor Q$ & $Q \implies P$ & $\qty(P \lor Q) \lor \qty(Q \implies P)$ \\ \midrule
+            T & T & T          & T              & T                                        \\
+            T & F & T          & T              & T                                        \\
+            F & T & T          & F              & T                                        \\
+            F & F & F          & T              & T                                        \\
+            \bottomrule
+          \end{tabular}
+        \end{minipage}
+        \linebreak
+        \linebreak
+        \linebreak
+        \linebreak
+        From this truth table we can observe that $\qty(P \lor Q) \lor \qty(Q \implies P)$
+        is true for all possible values of P and Q, thus it is a tautology.
 \end{enumerate}
 \end{document}
